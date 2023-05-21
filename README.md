@@ -6,6 +6,8 @@ Implemented a Encoder Decoder Architecture with and without Attention Mechanism 
 
 Jump to Section: [Usage](#usage)
 
+Report: [Report](https://wandb.ai/cs20b013-bersilin/CS6910_Assn3_Vanilla_RNN/reports/CS6910-Assignment-3-Report--Vmlldzo0NDAzNzQy)
+
 ## Encoder
 
 The encoder is a simple cell of either LSTM, RNN or GRU. The input to the encoder is a sequence of characters and the output is a sequence of hidden states. The hidden state of the last time step is used as the context vector for the decoder.
