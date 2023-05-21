@@ -7,17 +7,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import time
-
-import wandb
-wandb.login()
+import argparse
 
 random.seed()
 
-import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(device)
 
 # Language Model
 SOS_token = 0
@@ -362,7 +356,39 @@ params = {
     "weight_decay": 0.001
 }
 
-model = Translator('tam', params)
+language = "tam"
+
+parser = argparse.ArgumentParser(description="Transliteration Model with Attention")
+parser.add_argument('-es', '--embed_size', type=int, default=32, help='Embedding size')
+parser.add_argument('-hs', '--hidden_size', type=int, default=256, help='Hidden size')
+parser.add_argument('-ct', '--cell_type', type=str, default='RNN', help='Cell type')
+parser.add_argument('-nl', '--num_layers', type=int, default=2, help='Number of layers')
+parser.add_argument('-dr', '--dropout', type=float, default=0.1, help='Dropout')
+parser.add_argument('-lr', '--learning_rate', type=float, default=0.001, help='Learning rate')
+parser.add_argument('-op', '--optimizer', type=str, default='SGD', help='Optimizer')
+parser.add_argument('-wd', '--weight_decay', type=float, default=0.001, help='Weight decay')
+parser.add_argument('-l', '--lang', type=str, default='tam', help='Language')
+
+args = parser.parse_args()
+
+for arg in vars(args):
+    params[arg] = getattr(args, arg)
+
+language = args.lang
+
+print("Language: {}".format(language))
+print("Embedding size: {}".format(params['embed_size']))
+print("Hidden size: {}".format(params['hidden_size']))
+print("Cell type: {}".format(params['cell_type']))
+print("Number of layers: {}".format(params['num_layers']))
+print("Dropout: {}".format(params['dropout']))
+print("Learning rate: {}".format(params['learning_rate']))
+print("Optimizer: {}".format(params['optimizer']))
+print("Weight decay: {}".format(params['weight_decay']))
+print("Teacher forcing ratio: {}".format(params['teacher_forcing_ratio']))
+print("Max length: {}".format(params['max_length']))
+
+model = Translator(language, params)
 
 epochs = 10
 

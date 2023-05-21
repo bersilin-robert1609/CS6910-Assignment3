@@ -367,7 +367,7 @@ model = Translator('tam', params)
 model.encoder.load_state_dict(torch.load('./best_models_attn/encoder.pt'))
 model.decoder.load_state_dict(torch.load('./best_models_attn/decoder.pt'))
 
-with open("test_gen.txt", "w") as f:
+with open("test_gen_attn.txt", "w") as f:
     test_data = get_data("tam", "test")
     f.write("Input, Target, Output\n")
     accuracy = 0
