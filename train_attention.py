@@ -348,7 +348,7 @@ params = {
     "hidden_size": 256,
     "cell_type": "RNN",
     "num_layers": 2,
-    "dropout": .1,
+    "dropout": 0,
     "learning_rate": 0.001,
     "optimizer": "SGD",
     "teacher_forcing_ratio": 0.5,
@@ -363,7 +363,7 @@ parser.add_argument('-es', '--embed_size', type=int, default=32, help='Embedding
 parser.add_argument('-hs', '--hidden_size', type=int, default=256, help='Hidden size')
 parser.add_argument('-ct', '--cell_type', type=str, default='RNN', help='Cell type')
 parser.add_argument('-nl', '--num_layers', type=int, default=2, help='Number of layers')
-parser.add_argument('-dr', '--dropout', type=float, default=0.1, help='Dropout')
+parser.add_argument('-dr', '--dropout', type=float, default=0, help='Dropout')
 parser.add_argument('-lr', '--learning_rate', type=float, default=0.001, help='Learning rate')
 parser.add_argument('-op', '--optimizer', type=str, default='SGD', help='Optimizer')
 parser.add_argument('-wd', '--weight_decay', type=float, default=0.001, help='Weight decay')
