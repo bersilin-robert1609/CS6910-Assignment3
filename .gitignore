@@ -1,5 +1,2 @@
 wandb
-models
-.venv
-*parellel*
-best_model_vanilla
+__pycache__
